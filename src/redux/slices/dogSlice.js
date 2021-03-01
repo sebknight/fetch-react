@@ -3,23 +3,19 @@ import { createSlice } from '@reduxjs/toolkit';
 export const dogSlice = createSlice({
     name: 'dog',
     initialState: {
-        url: {},
+        url: '',
         loading: false,
         error: null
     },
     reducers: {
         fetchDogRequest: state => {
-            state.url = {}
             state.loading = true
-            state.error = null
         },
         fetchDogSuccess: (state, action) => {
             state.url = action.payload
             state.loading = false
-            state.error = null
         },
         fetchDogFailure: (state, action) => {
-            state.url = {}
             state.loading = false
             state.error = action.payload
         },
@@ -41,6 +37,14 @@ export const { fetchDogRequest, fetchDogSuccess, fetchDogFailure } = dogSlice.ac
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectTest = state => state.dog;
+export const selectDog = state => state.url;
+
+// Break down the response to extract the breed name
+export const selectBreed = state => {
+    const path = state.dog.url
+    const pathArr = path.split('/')
+    const breedIndex = pathArr[4]
+    return breedIndex.replace('-', '%20')
+}
 
 export default dogSlice.reducer;
