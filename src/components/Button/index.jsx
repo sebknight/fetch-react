@@ -1,10 +1,10 @@
 import React from 'react';
 
 const Button = (props) => {
-    const { label } = props;
+    const { onClick, label } = props;
 
     return (
-        <button>
+        <button onClick={onClick}>
             {label}
         </button>
     )
