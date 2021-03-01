@@ -5,7 +5,7 @@ export const dogSlice = createSlice({
     initialState: {
         url: '',
         loading: false,
-        error: null
+        error: false
     },
     reducers: {
         fetchDogRequest: state => {
@@ -15,9 +15,9 @@ export const dogSlice = createSlice({
             state.url = action.payload
             state.loading = false
         },
-        fetchDogFailure: (state, action) => {
+        fetchDogFailure: state => {
             state.loading = false
-            state.error = action.payload
+            state.error = true
         },
     },
 });

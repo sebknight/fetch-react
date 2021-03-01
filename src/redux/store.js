@@ -1,7 +1,7 @@
 import { combineReducers, createStore, applyMiddleware } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { watcherSaga } from './sagas/sagas'
+import { rootSaga } from './sagas/sagas'
 import dogSlice from './slices/dogSlice';
 import wikiSlice from './slices/wikiSlice';
 
@@ -23,6 +23,6 @@ export const store = createStore(rootReducer, composeWithDevTools(
     applyMiddleware(sagaMiddleware),
   ));
 
-sagaMiddleware.run(watcherSaga)
+sagaMiddleware.run(rootSaga)
 
 

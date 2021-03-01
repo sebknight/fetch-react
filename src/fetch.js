@@ -117,11 +117,11 @@ setTimeout(() => abortController.abort(), 5000)
 
 //     img.onerror = new Error('image failed to load');
 
-//     // Break down the response to extract the breed name
-//     const pathArr = path.split('/');
-//     const breedIndex = pathArr[4];
-//     // Replace any dashes in the breed name with a space
-//     const breed = breedIndex.replace('-', '%20');
+    // Break down the response to extract the breed name
+    const pathArr = path.split('/');
+    const breedIndex = pathArr[4];
+    // Replace any dashes in the breed name with a space
+    const breed = breedIndex.replace('-', '%20');
 
 //     /* Build query for Wikipedia API
 //     Add 'dog' to increase specificity i.e. without it
