@@ -11,7 +11,7 @@ const LoadingIndicator = () => {
   return (
     <>
       {renderIf(isDogLoading || isWikiLoading)(() => (
-        <div className="lds-heart">
+        <div data-testid="LoadingIndicator" className="lds-heart">
           <div></div>
         </div>
       ))}
