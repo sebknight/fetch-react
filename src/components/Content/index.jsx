@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectSnippet, selectTitle, selectIsWikiLoading, selectLink, selectPageId } from "../../redux/slices/wikiSlice";
+import { selectSnippet, selectTitle, selectIsWikiLoading, selectPageId } from "../../redux/slices/wikiSlice";
 import { selectDogUrl, selectIsDogLoading } from "../../redux/slices/dogSlice";
 import renderIf from 'render-if';
 
