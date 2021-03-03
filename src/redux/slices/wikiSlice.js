@@ -47,12 +47,12 @@ export const {
 } = wikiSlice.actions;
 
 // Selectors
-export const selectSnippet = (state) => state.wiki.snippet;
-
 export const selectIsWikiLoading = (state) => state.wiki.loading;
 
-export const selectIsWikiError = (state) => state.wiki.error;
+export const selectSnippet = (state) => state.wiki.snippet;
 
 export const selectTitle = (state) => state.wiki.title;
+
+export const selectPageId = (state) => state.wiki.pageId;
 
 export default wikiSlice.reducer;

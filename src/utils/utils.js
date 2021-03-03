@@ -2,7 +2,14 @@ import { pipe } from "ramda";
 
 // Utility functions
 // Catching edge cases where received data is weird
-export const dogEdgeCases = ["txt", "plott", "bernard", "german", "pyrenees", "dachshund"];
+export const dogEdgeCases = [
+  "txt",
+  "plott",
+  "bernard",
+  "german",
+  "pyrenees",
+  "dachshund",
+];
 
 export const wikiEdgeCases = [
   "Affenpinscher",
@@ -33,21 +40,22 @@ const escQuotes = (snippet) => snippet.replace(/&quot;/gi, '"');
 
 // Some snippets don't have a period
 const firstSentence = (snippet) =>
-  snippet.indexOf(".") === -1 ?
-  "No facts found, but that's a great dog!" :
-  // Get sentence and insert period
-  `${snippet.substring(0, snippet.indexOf("."))}.`;
+  snippet.indexOf(".") === -1
+    ? "No facts found, but that's a great dog!"
+    : // Get sentence and insert period
+      `${snippet.substring(0, snippet.indexOf("."))}.`;
 
 // Setting a reasonable default to reduce garbage output
-const checkLength = (snippet) => snippet.length <= 20 ?
-  snippet = "No facts found, but that's a great dog!" :
-  snippet;
+const checkLength = (snippet) =>
+  snippet.length <= 20
+    ? (snippet = "No facts found, but that's a great dog!")
+    : snippet;
 
 export const cleanSnippet = (snippet) =>
   pipe(scrubHTML, escQuotes, firstSentence, checkLength)(snippet);
 
 // Remove anything in brackets
-export const cleanTitle = (title) => title.replace(/ *\([^)]*\) */g, "")
+export const cleanTitle = (title) => title.replace(/ *\([^)]*\) */g, "");
 
 export const getBreed = (path) => {
   const pathArr = path.split("/");

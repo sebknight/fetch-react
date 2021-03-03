@@ -15,8 +15,8 @@ export function* rootSaga() {
 }
 
 function* fetchDogSaga() {
-  yield put({ type: 'dog/clearData' })
-  yield put({ type: 'wiki/clearData' });
+  yield put({ type: "dog/clearData" });
+  yield put({ type: "wiki/clearData" });
   try {
     const response = yield call(
       fetch,
@@ -32,7 +32,7 @@ function* fetchDogSaga() {
     yield put({ type: "wiki/fetchWikiRequest" });
   } catch (error) {
     yield put({ type: "dog/fetchDogFailure" });
-    yield put({ type: "dog/fetchWikiFailure" });
+    yield put({ type: "wiki/fetchWikiFailure" });
   }
 }
 
