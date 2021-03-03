@@ -23,18 +23,18 @@ const Content = () => {
     <section className="mt-12 flex justify-center items-center">
       <LoadingIndicator />
       {renderIf(!isDogLoading && !isWikiLoading && snippet !== "")(() => (
-        <div className="max-w-2xl bg-white border-2 border-gray-300 p-5 rounded-md tracking-wide shadow-lg">
-        <div className="flex">
+        <div className="max-w-5xl bg-white border-2 border-gray-300 p-5 rounded-md tracking-wide shadow-lg">
+          <div className="xs:flex-col md:flex">
           {renderIf(imgUrl !== "/" && imgUrl !== "no dogs found")(() => (
             <Img
-              className="w-60 rounded-md border-2 border-gray-300"
+              className="flex-col w-full md:w-2/4 rounded-md border-2 border-gray-300"
               src={imgUrl}
               title={title}
               alt={title}
             />
           ))}
 
-          <div className="flex flex-col ml-5">
+          <div className="flex flex-col mt-5 md:mt-0 md:ml-5">
             {renderIf(imgUrl !== "no dog found")(() => (
               <h2 className="text-xl font-bold text-green-600">{title}</h2>
             ))}
@@ -60,9 +60,9 @@ const Content = () => {
                 </p>
               </div>
             ))}
+            </div>
           </div>
         </div>
-    </div>
       ))}
     </section>
   );
