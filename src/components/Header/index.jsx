@@ -6,16 +6,13 @@ const Header = () => {
   const dispatch = useDispatch();
 
   return (
-    <header>
-      <h1 className="heading">Ready to see a dog?</h1>
-      <div className="btn-container">
+    <header className="flex flex-col justify-center items-center">
+      <h1 className="text-3xl font-bold text-green-600 mt-6 mb-6">Ready to see a dog?</h1>
         <Button
-          className="btn"
           label="Fetch!"
           onClick={() => dispatch({ type: "dog/fetchDogRequest" })}
           title="Fetch dog"
         />
-      </div>
     </header>
   );
 };

@@ -3,12 +3,12 @@ import { pipe } from "ramda";
 // Utility functions
 // Catching edge cases where received data is weird
 export const dogEdgeCases = [
-  "txt",
-  "plott",
   "bernard",
-  "german",
-  "pyrenees",
   "dachshund",
+  "german",
+  "plott",
+  "pyrenees",
+  "txt",
 ];
 
 export const wikiEdgeCases = [
@@ -19,13 +19,14 @@ export const wikiEdgeCases = [
   "Cairn",
   "Caucausian",
   "Chihuahua",
-  "Keeshond",
   "Jack",
+  "Keeshond",
   "Leonberg",
-  "Merrill",
   "Malinois",
-  "mixed",
+  "Maltese",
+  "Merrill",
   "mix",
+  "mixed",
   "Old English Bulldog",
   "Pyrenees",
   "Siberian",
@@ -38,7 +39,7 @@ const scrubHTML = (snippet) =>
   snippet.replace(/<\/?[a-z][a-z0-9]*[^<>]*>/gi, "");
 const escQuotes = (snippet) => snippet.replace(/&quot;/gi, '"');
 
-// Some snippets don't have a period
+// Some snippets don't have a period, some start mid-sentence
 const firstSentence = (snippet) =>
   snippet.indexOf(".") === -1
     ? "No facts found, but that's a great dog!"

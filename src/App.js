@@ -4,10 +4,10 @@ import Content from "./components/Content";
 
 function App() {
   return (
-    <div className="font-sans subpixel-antialiased bg-pink-100">
+    <main className="font-sans subpixel-antialiased h-screen bg-pink-100">
       <Header />
       <Content />
-    </div>
+    </main>
   );
 }
 

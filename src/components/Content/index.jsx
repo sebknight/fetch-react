@@ -20,34 +20,49 @@ const Content = () => {
   const isWikiLoading = useSelector(selectIsWikiLoading);
 
   return (
-    <div className="container mx-auto">
+    <section className="mt-12 flex justify-center items-center">
       <LoadingIndicator />
       {renderIf(!isDogLoading && !isWikiLoading && snippet !== "")(() => (
-        <div className="content mx-auto">
-          <h2>{title}</h2>
-          <div className="content__img-container">
+        <div className="max-w-2xl bg-white border-2 border-gray-300 p-5 rounded-md tracking-wide shadow-lg">
+        <div className="flex">
+          {renderIf(imgUrl !== "/" && imgUrl !== "no dogs found")(() => (
             <Img
-              className="content__img"
+              className="w-60 rounded-md border-2 border-gray-300"
               src={imgUrl}
               title={title}
               alt={title}
             />
+          ))}
+
+          <div className="flex flex-col ml-5">
+            {renderIf(imgUrl !== "no dog found")(() => (
+              <h2 className="text-xl font-bold text-green-600">{title}</h2>
+            ))}
+
+            {renderIf(imgUrl === "no dog found")(() => (
+              <p>No dogs found. Try again!</p>
+            ))}
+
+            {renderIf(imgUrl !== "no dog found")(() => (
+              <p>{snippet}</p>
+            ))}
+
+            {renderIf(pageId !== 0)(() => (
+              <p>
+                Find out more on{" "}
+                <a
+                  className="text-pink-600 underline"
+                  href={`https://en.wikipedia.org?curid=${pageId}`}
+                >
+                  Wikipedia
+                </a>
+              </p>
+            ))}
           </div>
-          {renderIf(imgUrl === "no dog found")(() => (
-            <p>No dogs found. Try again!</p>
-          ))}
-          {renderIf(imgUrl !== "no dog found")(() => (
-            <p>{snippet}</p>
-          ))}
-          {renderIf(pageId !== 0)(() => (
-            <p>
-              Find out more on{" "}
-              <a href={`https://en.wikipedia.org?curid=${pageId}`}>Wikipedia</a>
-            </p>
-          ))}
         </div>
-      ))}
     </div>
+      ))}
+    </section>
   );
 };
 export default Content;
