@@ -1,6 +1,9 @@
-import React from 'react';
+import React from "react";
 
-const LoadingIndicator = () =>
-    <div class="lds-heart"><div></div></div>
+const LoadingIndicator = () => (
+  <div class="lds-heart">
+    <div></div>
+  </div>
+);
 
 export default LoadingIndicator;

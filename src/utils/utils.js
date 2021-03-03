@@ -1,36 +1,46 @@
-import { pipe } from 'ramda';
+import { pipe } from "ramda";
 
 // Utility functions
-// Dog functions
+// Catching edge cases where received data is weird
+export const dogEdgeCases = ["txt", "plott", "bernard", "german", "pyrenees"];
 
-// Catching instances where Dog API servces wrong format or breed snippet is weird
-const dogEdgeCases = ['txt', 'plott', 'bernard', 'germanshepherd', 'pyrenees'];
-export const isDogEdgeCase = dog => dogEdgeCases.includes(dog);
+export const wikiEdgeCases = [
+  "Affenpinscher",
+  "Akita",
+  "Belgian",
+  "Bernard",
+  "Cairn",
+  "Caucausian",
+  "Chihuahua",
+  "Keeshond",
+  "Jack",
+  "Leonberg",
+  "Merrill",
+  "Malinois",
+  "mixed",
+  "Old English Bulldog",
+  "Pyrenees",
+  "Siberian",
+];
 
-// Wiki functions
-
-// Get page title
-// Some snippets seem to start mid-sentence
-
-
-// Catching instances where Wiki API serves weird snippets
-const wikiEdgeCases =
-    ['Affenpinscher', 'Akita', 'Belgian', 'Cairn',
-    'Caucasian Shepherd Dog', 'Chihuahua', 'Keeshond',
-    'Jack', 'Leonberg', 'Merrill',
-    'Malinois', 'mixed', 'Old English Bulldog', 
-    'Pyrenees', 'Siberian'];
-
-export const isWikiEdgeCase = title => wikiEdgeCases.includes(title);
+export const isEdgeCase = (cases, str) => cases.some((c) => str.includes(c));
 
 // Sanitise snippet and return first sentence
-// const hasCaps = snippet => snippet[0] !== snippet[0].toLowerCase();
-const scrubHTML = snippet => snippet.replace(/<\/?[a-z][a-z0-9]*[^<>]*>/ig, '');
-const escQuotes = snippet => snippet.replace(/&quot;/ig, '"');
-const firstSentence = snippet =>
-    `${snippet.substring(0, snippet.indexOf('.'))}.`;
-export const cleanSnippet = snippet =>
-    pipe(scrubHTML, 
-        escQuotes, 
-        firstSentence)
-        (snippet)
+const hasCaps = (snippet) =>
+  snippet[0] !== snippet[0].toLowerCase()
+    ? snippet
+    : "Facts unavailable, but what a great dog!";
+
+const scrubHTML = (snippet) =>
+  snippet.replace(/<\/?[a-z][a-z0-9]*[^<>]*>/gi, "");
+const escQuotes = (snippet) => snippet.replace(/&quot;/gi, '"');
+const firstSentence = (snippet) => snippet.substring(0, snippet.indexOf("."));
+
+export const cleanSnippet = (snippet) =>
+  pipe(hasCaps, scrubHTML, escQuotes, firstSentence)(snippet);
+
+export const getBreed = (path) => {
+  const pathArr = path.split("/");
+  const breedIndex = pathArr[4];
+  return breedIndex.replace("-", "%20");
+};

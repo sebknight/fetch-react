@@ -1,16 +1,20 @@
-import { combineReducers, createStore, applyMiddleware } from '@reduxjs/toolkit'
-import createSagaMiddleware from 'redux-saga'
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { rootSaga } from './sagas/sagas'
-import dogSlice from './slices/dogSlice';
-import wikiSlice from './slices/wikiSlice';
+import {
+  combineReducers,
+  createStore,
+  applyMiddleware,
+} from "@reduxjs/toolkit";
+import createSagaMiddleware from "redux-saga";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { rootSaga } from "./sagas/sagas";
+import dogSlice from "./slices/dogSlice";
+import wikiSlice from "./slices/wikiSlice";
 
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
-    dog: dogSlice,
-    wiki: wikiSlice
-})
+  dog: dogSlice,
+  wiki: wikiSlice,
+});
 
 // const enhancements = compose(
 //     applyMiddleware(sagaMiddleware),
@@ -19,10 +23,9 @@ const rootReducer = combineReducers({
 //     })
 // )
 
-export const store = createStore(rootReducer, composeWithDevTools(
-    applyMiddleware(sagaMiddleware),
-  ));
+export const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
+);
 
-sagaMiddleware.run(rootSaga)
-
-
+sagaMiddleware.run(rootSaga);

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Caveat:700|Raleway&display=swap");
-body, html {
+body,
+html {
   height: 100%;
   width: 100%;
   min-height: 100%;

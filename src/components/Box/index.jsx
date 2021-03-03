@@ -1,10 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const Box = () => {
-    return (
-        <section className="content">
-        </section>
-    )
-}
+  return <section className="content"></section>;
+};
 
 export default Box;

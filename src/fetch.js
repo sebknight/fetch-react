@@ -1,25 +1,24 @@
 // ENDPOINTS
-const dogAPI = 'https://dog.ceo/api/breeds/image/random';
+const dogAPI = "https://dog.ceo/api/breeds/image/random";
 // const wikiAPI = 'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=';
 
-const abortController = new AbortController()
+const abortController = new AbortController();
 
 export const fetchDogs = window
   .fetch(dogAPI, {
-    method: 'GET',
+    method: "GET",
     signal: abortController.signal,
   })
-  .then(res => res.json())
-  .then(res => {
-    console.log(res.me)
+  .then((res) => res.json())
+  .then((res) => {
+    console.log(res.me);
   })
-  .catch(err => {
-    console.error('Request failed', err)
-  })
+  .catch((err) => {
+    console.error("Request failed", err);
+  });
 
 // Cancel the request if it takes more than 5 seconds
-setTimeout(() => abortController.abort(), 5000)
-
+setTimeout(() => abortController.abort(), 5000);
 
 // // DOM NODES
 // const article = document.querySelector('.content__article');
@@ -117,11 +116,11 @@ setTimeout(() => abortController.abort(), 5000)
 
 //     img.onerror = new Error('image failed to load');
 
-    // Break down the response to extract the breed name
-    const pathArr = path.split('/');
-    const breedIndex = pathArr[4];
-    // Replace any dashes in the breed name with a space
-    const breed = breedIndex.replace('-', '%20');
+// Break down the response to extract the breed name
+const pathArr = path.split("/");
+const breedIndex = pathArr[4];
+// Replace any dashes in the breed name with a space
+const breed = breedIndex.replace("-", "%20");
 
 //     /* Build query for Wikipedia API
 //     Add 'dog' to increase specificity i.e. without it
