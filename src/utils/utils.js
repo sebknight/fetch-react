@@ -26,18 +26,16 @@ export const wikiEdgeCases = [
 export const isEdgeCase = (cases, str) => cases.some((c) => str.includes(c));
 
 // Sanitise snippet and return first sentence
-const hasCaps = (snippet) =>
-  snippet[0] !== snippet[0].toLowerCase()
-    ? snippet
-    : "Facts unavailable, but what a great dog!";
-
 const scrubHTML = (snippet) =>
   snippet.replace(/<\/?[a-z][a-z0-9]*[^<>]*>/gi, "");
 const escQuotes = (snippet) => snippet.replace(/&quot;/gi, '"');
 const firstSentence = (snippet) => snippet.substring(0, snippet.indexOf("."));
 
 export const cleanSnippet = (snippet) =>
-  pipe(hasCaps, scrubHTML, escQuotes, firstSentence)(snippet);
+  pipe(scrubHTML, escQuotes, firstSentence)(snippet);
+
+// Remove anything in brackets
+export const cleanTitle = (title) => title.replace(/ *\([^)]*\) */g, "")
 
 export const getBreed = (path) => {
   const pathArr = path.split("/");

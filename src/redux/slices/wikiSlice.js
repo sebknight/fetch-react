@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { cleanSnippet } from "../../utils/utils";
+import { cleanTitle, cleanSnippet } from "../../utils/utils";
 
 export const wikiSlice = createSlice({
   name: "wiki",
   initialState: {
     title: "",
-    snippet: "Facts unavailable, but what a great dog!",
-    pageId: "",
+    snippet: "",
+    pageId: 0,
     loading: false,
     error: false,
   },
@@ -15,16 +15,16 @@ export const wikiSlice = createSlice({
       state.loading = true;
     },
     fetchWikiSuccess: (state, action) => {
-      state.title = action.payload.title;
-      state.snippet = action.payload.snippet;
+      state.title = cleanTitle(action.payload.title);
+      state.snippet = cleanSnippet(action.payload.snippet);
       state.pageId = action.payload.pageid;
       state.loading = false;
     },
     fetchWikiFailure: (state) => {
-      state.loading = false;
-      state.error = true;
       state.title = "Cool Dog";
       state.snippet = "Facts unavailable, but what a great dog!";
+      state.loading = false;
+      state.error = true;
     },
   },
 });
@@ -36,16 +36,12 @@ export const {
 } = wikiSlice.actions;
 
 // Selectors
-export const selectSnippet = (state) => cleanSnippet(state.wiki.snippet);
+export const selectSnippet = (state) => state.wiki.snippet;
 
 export const selectIsWikiLoading = (state) => state.wiki.loading;
 
 export const selectIsWikiError = (state) => state.wiki.error;
 
-// Remove anything in brackets e.g. disambiguation
-export const selectTitle = (state) =>
-  state.wiki.title.includes("(")
-    ? state.wiki.title.substring("0", state.wiki.title.indexOf("("))
-    : state.wiki.title;
+export const selectTitle = (state) => state.wiki.title;
 
 export default wikiSlice.reducer;
