@@ -9,7 +9,7 @@ const initialState = {
   url: "/",
   loading: false,
   error: false,
-}
+};
 
 describe("dog reducer", () => {
   it("should return the initial state", () => {

@@ -5,14 +5,13 @@ import reducer, {
   clearData,
 } from "../wikiSlice";
 
-const initialState = 
-  {
-    title: "",
-    snippet: "",
-    pageId: 0,
-    loading: false,
-    error: false,
-  }
+const initialState = {
+  title: "",
+  snippet: "",
+  pageId: 0,
+  loading: false,
+  error: false,
+};
 
 describe("wiki reducer", () => {
   it("should return the initial state", () => {
@@ -28,7 +27,7 @@ describe("wiki reducer", () => {
         }
       )
     ).toEqual({
-      loading: true
+      loading: true,
     });
   });
 
@@ -99,7 +98,7 @@ describe("wiki reducer", () => {
           snippet: "something else",
           pageId: 1,
           loading: false,
-          error: false
+          error: false,
         },
         {
           type: clearData,
