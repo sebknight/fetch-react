@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const dogSlice = createSlice({
   name: "dog",
   initialState: {
-    url: "",
+    url: "/",
     loading: false,
     error: false,
   },
@@ -21,7 +21,7 @@ export const dogSlice = createSlice({
       state.error = true;
     },
     clearData: (state) => {
-      state.url = "";
+      state.url = "/";
       state.loading = false;
       state.error = false;
     },
@@ -32,6 +32,7 @@ export const {
   fetchDogRequest,
   fetchDogSuccess,
   fetchDogFailure,
+  clearData,
 } = dogSlice.actions;
 
 // Selectors
