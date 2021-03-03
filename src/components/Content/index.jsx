@@ -48,15 +48,17 @@ const Content = () => {
             ))}
 
             {renderIf(pageId !== 0)(() => (
-              <p>
-                Find out more on{" "}
-                <a
-                  className="text-pink-600 underline"
-                  href={`https://en.wikipedia.org?curid=${pageId}`}
-                >
-                  Wikipedia
-                </a>
-              </p>
+              <div className="flex h-full items-end">
+                <p>
+                  Find out more on{" "}
+                  <a
+                    className="text-pink-600 underline"
+                    href={`https://en.wikipedia.org?curid=${pageId}`}
+                  >
+                    Wikipedia
+                  </a>
+                </p>
+              </div>
             ))}
           </div>
         </div>
