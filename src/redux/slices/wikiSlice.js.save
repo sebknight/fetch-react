@@ -1,11 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+AAOBBOBBBBBimport { createSlice } from '@reduxjs/toolkit';
 import { cleanSnippet } from '../../utils/utils';
+import { isNil, ifElse } from 'ramda';
 
 export const wikiSlice = createSlice({
     name: 'wiki',
     initialState: {
         title: '',
-        snippet: 'Facts unavailable, but what a great dog!',
+        snippet: '',
+        defaultSnippet: 'Facts unavailable, but what a great dog!',
         pageId: '',
         loading: false,
         error: false
@@ -23,7 +25,6 @@ export const wikiSlice = createSlice({
         fetchWikiFailure: state => {
             state.loading = false
             state.error = true
-            state.snippet = 'Facts unavailable, but what a great dog!'
         },
     },
 });
@@ -31,7 +32,8 @@ export const wikiSlice = createSlice({
 export const { fetchWikiBegin, fetchWikiSuccess, fetchWikiFailure } = wikiSlice.actions;
 
 // Selectors
-export const selectSnippet = state => cleanSnippet(state.wiki.snippet);
+
+export const selectSnippet = (state, snippet) => cleanSnippet(state);
 
 export const selectIsWikiLoading = state => state.wiki.loading;
 

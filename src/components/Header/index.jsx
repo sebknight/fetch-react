@@ -11,7 +11,7 @@ const Header = () => {
             <div className="btn-container">
                 <Button 
                 // Payload is a hack to get around redux not recognising this action
-                    onClick={() => dispatch({ type: 'dog/fetchDogRequest', payload: 'fetch' })}
+                    onClick={() => dispatch({ type: 'dog/fetchDogRequest' })}
                     title="Fetch dog"
                     label="Fetch!"
                 />
