@@ -7,12 +7,18 @@ const Header = () => {
 
   return (
     <header className="flex flex-col justify-center items-center">
-      <h1 className="text-3xl font-bold text-green-600 mt-6 mb-6">Ready to see a dog?</h1>
-        <Button
-          label="Fetch!"
-          onClick={() => dispatch({ type: "dog/fetchDogRequest" })}
-          title="Fetch dog"
-        />
+      <h1
+        data-testid="Header-heading"
+        className="text-3xl font-bold text-green-600 mt-6 mb-6"
+      >
+        Ready to see a dog?
+      </h1>
+      <Button
+        data-testid="Header-button"
+        label="Fetch!"
+        onClick={() => dispatch({ type: "dog/fetchDogRequest" })}
+        title="Fetch dog"
+      />
     </header>
   );
 };

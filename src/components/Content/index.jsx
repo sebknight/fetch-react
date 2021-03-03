@@ -21,45 +21,57 @@ const Content = () => {
 
   return (
     <section className="mt-12 flex justify-center items-center">
-      <LoadingIndicator />
+      {renderIf(isDogLoading || isWikiLoading)(() => (
+        <LoadingIndicator />
+      ))}
       {renderIf(!isDogLoading && !isWikiLoading && snippet !== "")(() => (
-        <div className="max-w-5xl bg-white border-2 border-gray-300 p-5 rounded-md tracking-wide shadow-lg">
+        <div
+          data-testid="Content-card"
+          className="max-w-5xl bg-white border-2 border-gray-300 p-5 rounded-md tracking-wide shadow-lg"
+        >
           <div className="xs:flex-col md:flex">
-          {renderIf(imgUrl !== "/" && imgUrl !== "no dogs found")(() => (
-            <Img
-              className="flex-col w-full md:w-2/4 rounded-md border-2 border-gray-300"
-              src={imgUrl}
-              title={title}
-              alt={title}
-            />
-          ))}
-
-          <div className="flex flex-col mt-5 md:mt-0 md:ml-5">
-            {renderIf(imgUrl !== "no dog found")(() => (
-              <h2 className="text-xl font-bold text-green-600">{title}</h2>
+            {renderIf(imgUrl !== "/" && imgUrl !== "no dogs found")(() => (
+              <Img
+                data-testid="Content-image"
+                className="flex-col w-full md:w-2/4 rounded-md border-2 border-gray-300"
+                src={imgUrl}
+                title={title}
+                alt={title}
+              />
             ))}
 
-            {renderIf(imgUrl === "no dog found")(() => (
-              <p>No dogs found. Try again!</p>
-            ))}
+            <div className="flex flex-col mt-5 md:mt-0 md:ml-5">
+              {renderIf(imgUrl !== "no dog found")(() => (
+                <h2
+                  data-testid="Content-title"
+                  className="text-xl font-bold text-green-600"
+                >
+                  {title}
+                </h2>
+              ))}
 
-            {renderIf(imgUrl !== "no dog found")(() => (
-              <p>{snippet}</p>
-            ))}
+              {renderIf(imgUrl === "no dog found")(() => (
+                <p>No dogs found. Try again!</p>
+              ))}
 
-            {renderIf(pageId !== 0)(() => (
-              <div className="flex h-full items-end">
-                <p>
-                  Find out more on{" "}
-                  <a
-                    className="text-pink-600 underline"
-                    href={`https://en.wikipedia.org?curid=${pageId}`}
-                  >
-                    Wikipedia
-                  </a>
-                </p>
-              </div>
-            ))}
+              {renderIf(imgUrl !== "no dog found")(() => (
+                <p data-testid="Content-snippet">{snippet}</p>
+              ))}
+
+              {renderIf(pageId !== 0)(() => (
+                <div className="flex h-full items-end">
+                  <p>
+                    Find out more on{" "}
+                    <a
+                      data-testid="Content-link"
+                      className="text-pink-600 underline"
+                      href={`https://en.wikipedia.org?curid=${pageId}`}
+                    >
+                      Wikipedia
+                    </a>
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
