@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '../Button';
 import { useDispatch } from 'react-redux';
-import { fetchDogRequest } from '../../redux/slices/dogSlice';
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -12,7 +11,7 @@ const Header = () => {
             <div className="btn-container">
                 <Button 
                 // Payload is a hack to get around redux not recognising this action
-                    onClick={() => dispatch({ type: fetchDogRequest, payload: 'fetch' })}
+                    onClick={() => dispatch({ type: 'dog/fetchDogRequest', payload: 'fetch' })}
                     title="Fetch dog"
                     label="Fetch!"
                 />

@@ -93,7 +93,6 @@ body, html {
   align-items: center;
   margin-top: 1rem;
   padding: 1rem;
-  display: none;
   background: white;
   flex-flow: column nowrap;
   justify-content: flex-start;
