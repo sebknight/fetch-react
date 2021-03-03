@@ -11,7 +11,10 @@ export const wikiSlice = createSlice({
     error: false,
   },
   reducers: {
-    fetchWikiBegin: (state) => {
+    fetchWikiRequest: (state) => {
+      state.title = "";
+      state.snippet = "";
+      state.pageId = 0;
       state.loading = true;
     },
     fetchWikiSuccess: (state, action) => {
@@ -22,15 +25,23 @@ export const wikiSlice = createSlice({
     },
     fetchWikiFailure: (state) => {
       state.title = "Cool Dog";
-      state.snippet = "Facts unavailable, but what a great dog!";
+      state.snippet = "No facts found, but that's a great dog!";
+      state.pageId = 0;
       state.loading = false;
       state.error = true;
+    },
+    clearData: (state) => {
+      state.title = "";
+      state.snippet = "";
+      state.pageId = 0;
+      state.loading = false;
+      state.error = false;
     },
   },
 });
 
 export const {
-  fetchWikiBegin,
+  fetchWikiRequest,
   fetchWikiSuccess,
   fetchWikiFailure,
 } = wikiSlice.actions;

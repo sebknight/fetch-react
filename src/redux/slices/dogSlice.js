@@ -16,10 +16,15 @@ export const dogSlice = createSlice({
       state.loading = false;
     },
     fetchDogFailure: (state) => {
-      state.url = "dog"
+      state.url = "no dog found"
       state.loading = false;
       state.error = true;
     },
+    clearData: (state) => {
+      state.url = "";
+      state.loading = false;
+      state.error = false;
+    }
   },
 });
 

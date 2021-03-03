@@ -1,23 +1,32 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectSnippet, selectTitle } from "../../redux/slices/wikiSlice";
-import { selectDogUrl } from "../../redux/slices/dogSlice";
-// import renderIf from 'render-if';
+import { selectSnippet, selectTitle, selectIsWikiLoading } from "../../redux/slices/wikiSlice";
+import { selectDogUrl, selectIsDogLoading } from "../../redux/slices/dogSlice";
+import renderIf from 'render-if';
 
 const Content = () => {
   const title = useSelector(selectTitle);
-  // const isWikiLoading = useStore(state.dog.loading);
-  // const isDogLoading = useSelector(state.);
+  const imgUrl = useSelector(selectDogUrl);
+  const snippet = useSelector(selectSnippet);
+  const isDogLoading = useSelector(selectIsDogLoading);
+  const isWikiLoading = useSelector(selectIsWikiLoading);
+
   return (
-    <>
-      {/* {renderIf(!isWikiLoading && !isDogLoading)(() => ( */}
-      <div className="content">
-        <h2>{title}</h2>
-        <img src={useSelector(selectDogUrl)} alt={title}></img>
-        <p>{useSelector(selectSnippet)}</p>
-      </div>
-      {/* ))} */}
-    </>
+    <div>
+        {renderIf(!isDogLoading && !isWikiLoading && snippet !== "")(() => (
+          <div className="content">
+            <h2>{title}</h2>
+            {renderIf(imgUrl !== "" && imgUrl !== "no dog found")(() => (
+              <img src={imgUrl} title={title} alt={title}></img>    
+            ))}
+            {renderIf(imgUrl === "no dog found")(() => (
+              <p>No dogs found. Try again!</p>
+            ))}
+            <p>{snippet}</p>
+          </div>
+        ))}
+    </div>
+
   );
 };
 export default Content;

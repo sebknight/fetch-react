@@ -10,12 +10,13 @@ import { isEmpty } from "ramda";
 
 // watches for actions dispatched to the store, starts worker sagas
 export function* rootSaga() {
-  // Payload match is a hack to get around redux not recognising this action
   yield takeLatest("dog/fetchDogRequest", fetchDogSaga);
   yield takeLatest("wiki/fetchWikiRequest", fetchWikiSaga);
 }
 
 function* fetchDogSaga() {
+  yield put({ type: 'dog/clearData' })
+  yield put({ type: 'wiki/clearData' });
   try {
     const response = yield call(
       fetch,
@@ -30,8 +31,8 @@ function* fetchDogSaga() {
     yield put({ type: "dog/fetchDogSuccess", payload: url });
     yield put({ type: "wiki/fetchWikiRequest" });
   } catch (error) {
-    console.log(error);
     yield put({ type: "dog/fetchDogFailure" });
+    yield put({ type: "dog/fetchWikiFailure" });
   }
 }
 
@@ -49,14 +50,13 @@ function* fetchWikiSaga() {
       }
 
       if (isEdgeCase(wikiEdgeCases, json.query.search[0].title)) {
-        throw Error("Invalid wiki");
+        throw Error("Invalid dog");
       }
 
       return json.query.search[0];
     });
     yield put({ type: "wiki/fetchWikiSuccess", payload: data });
   } catch (error) {
-    console.log(error);
     yield put({ type: "wiki/fetchWikiFailure" });
   }
 }
