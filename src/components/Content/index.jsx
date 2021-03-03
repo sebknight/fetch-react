@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectSnippet, selectTitle, selectIsWikiLoading } from "../../redux/slices/wikiSlice";
+import { selectSnippet, selectTitle, selectIsWikiLoading, selectLink, selectPageId } from "../../redux/slices/wikiSlice";
 import { selectDogUrl, selectIsDogLoading } from "../../redux/slices/dogSlice";
 import renderIf from 'render-if';
 
@@ -8,6 +8,7 @@ const Content = () => {
   const title = useSelector(selectTitle);
   const imgUrl = useSelector(selectDogUrl);
   const snippet = useSelector(selectSnippet);
+  const pageId = useSelector(selectPageId);
   const isDogLoading = useSelector(selectIsDogLoading);
   const isWikiLoading = useSelector(selectIsWikiLoading);
 
@@ -22,7 +23,14 @@ const Content = () => {
             {renderIf(imgUrl === "no dog found")(() => (
               <p>No dogs found. Try again!</p>
             ))}
-            <p>{snippet}</p>
+              <p>
+                {snippet}
+              </p>
+            {renderIf(pageId !== 0)(() => (
+              <p>
+                Find out more on <a href={`https://en.wikipedia.org?curid=${pageId}`}>Wikipedia</a>
+              </p>
+            ))}
           </div>
         ))}
     </div>

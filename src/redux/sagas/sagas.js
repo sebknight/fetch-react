@@ -32,7 +32,7 @@ function* fetchDogSaga() {
     yield put({ type: "wiki/fetchWikiRequest" });
   } catch (error) {
     yield put({ type: "dog/fetchDogFailure" });
-    yield put({ type: "dog/fetchWikiFailure" });
+    yield put({ type: "wiki/fetchWikiFailure" });
   }
 }
 
