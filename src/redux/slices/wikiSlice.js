@@ -55,6 +55,4 @@ export const selectTitle = (state) => state.wiki.title;
 
 export const selectPageId = (state) => state.wiki.pageId;
 
-
-
 export default wikiSlice.reducer;
