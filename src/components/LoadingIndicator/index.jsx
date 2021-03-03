@@ -1,7 +1,7 @@
 import React from "react";
 
 const LoadingIndicator = () => (
-  <div class="lds-heart">
+  <div className="lds-heart">
     <div></div>
   </div>
 );
