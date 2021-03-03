@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import { store } from "./redux/store";
 import App from "./App";
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
+import "./index.css";
 
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <App />
+      <App className="bg:pink-100 h-screen container" />
     </React.StrictMode>
   </Provider>,
   document.getElementById("root")

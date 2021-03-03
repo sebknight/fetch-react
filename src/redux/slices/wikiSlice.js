@@ -12,9 +12,6 @@ export const wikiSlice = createSlice({
   },
   reducers: {
     fetchWikiRequest: (state) => {
-      state.title = "";
-      state.snippet = "";
-      state.pageId = 0;
       state.loading = true;
     },
     fetchWikiSuccess: (state, action) => {
@@ -44,6 +41,7 @@ export const {
   fetchWikiRequest,
   fetchWikiSuccess,
   fetchWikiFailure,
+  clearData,
 } = wikiSlice.actions;
 
 // Selectors
