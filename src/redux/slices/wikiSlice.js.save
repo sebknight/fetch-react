@@ -1,0 +1,48 @@
+AAOBBOBBBBBimport { createSlice } from '@reduxjs/toolkit';
+import { cleanSnippet } from '../../utils/utils';
+import { isNil, ifElse } from 'ramda';
+
+export const wikiSlice = createSlice({
+    name: 'wiki',
+    initialState: {
+        title: '',
+        snippet: '',
+        defaultSnippet: 'Facts unavailable, but what a great dog!',
+        pageId: '',
+        loading: false,
+        error: false
+    },
+    reducers: {
+        fetchWikiBegin: state => {
+            state.loading = true
+        },
+        fetchWikiSuccess: (state, action) => {
+            state.title = action.payload.title
+            state.snippet = action.payload.snippet
+            state.pageId = action.payload.pageid
+            state.loading = false
+        },
+        fetchWikiFailure: state => {
+            state.loading = false
+            state.error = true
+        },
+    },
+});
+
+export const { fetchWikiBegin, fetchWikiSuccess, fetchWikiFailure } = wikiSlice.actions;
+
+// Selectors
+
+export const selectSnippet = (state, snippet) => cleanSnippet(state);
+
+export const selectIsWikiLoading = state => state.wiki.loading;
+
+export const selectIsWikiError = state => state.wiki.error;
+
+// Remove anything in brackets e.g. disambiguation
+export const selectTitle = state =>
+    state.wiki.title.includes('(') ?
+        state.wiki.title.substring('0', state.wiki.title.indexOf('(')) :
+        state.wiki.title;
+
+export default wikiSlice.reducer;
