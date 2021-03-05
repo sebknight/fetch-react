@@ -27,13 +27,13 @@ const Content = () => {
       {renderIf(!isDogLoading && !isWikiLoading && snippet !== "")(() => (
         <div
           data-testid="Content-card"
-          className="max-w-5xl bg-white border-2 border-gray-300 p-5 rounded-md tracking-wide shadow-lg"
+          className="xs:max-w-full max-h-2/4 md:max-w-2/4 bg-white border-2 border-gray-300 p-5 rounded-md tracking-wide shadow-lg"
         >
-          <div className="xs:flex-col md:flex">
+          <div className="xs:flex-col md:flex max-h-full">
             {renderIf(imgUrl !== "/" && imgUrl !== "no dogs found")(() => (
               <Img
                 data-testid="Content-image"
-                className="flex-col w-full md:w-2/4 rounded-md border-2 border-gray-300"
+                className="flex-col max-w-full max-h-80 md:max-w-2/4 rounded-md border-2 border-gray-300"
                 src={imgUrl}
                 title={title}
                 alt={title}
@@ -58,7 +58,10 @@ const Content = () => {
                 <p data-testid="Content-snippet">{snippet}</p>
               ))}
 
-              {renderIf(pageId !== 0)(() => (
+              {renderIf(
+                snippet !== "No facts found, but that's a great dog!" &&
+                  pageId !== 0
+              )(() => (
                 <div className="flex h-full items-end">
                   <p>
                     Find out more on{" "}
