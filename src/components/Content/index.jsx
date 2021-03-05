@@ -30,7 +30,7 @@ const Content = () => {
           className="max-w-full md:max-w-5xl bg-white border-2 border-gray-300 p-5 rounded-md tracking-wide shadow-lg"
         >
           <div className="xs:flex-col md:flex max-h-full">
-            {renderIf(imgUrl !== "/" && imgUrl !== "no dogs found")(() => (
+            {renderIf(imgUrl !== "/" && imgUrl !== "no dogs found" && snippet !== "No dogs found. Try again!")(() => (
               <Img
                 data-testid="Content-image"
                 className="flex-col max-w-full max-h-80 md:max-w-3xl rounded-md border-2 border-gray-300"
