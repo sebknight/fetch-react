@@ -38,17 +38,15 @@ const Content = () => {
         >
           <div className="xs:flex-col md:flex max-h-full">
             {renderIf((!isDogError && !isWikiError) || imgUrl !== "/")(() => (
-              <>
-                <Img
-                  data-testid="Content-image"
-                  className="max-w-full max-h-80 md:max-w-4xl rounded-md self-center"
-                  style={{ backgroundColor: "lightgrey", width: 400 }}
-                  src={imgUrl}
-                  title={title}
-                  alt={title}
-                  debounce={0}
-                />
-              </>
+              <Img
+                data-testid="Content-image"
+                className="max-w-full max-h-80 md:max-w-4xl rounded-md self-center"
+                style={{ backgroundColor: "lightgrey", width: 400 }}
+                src={imgUrl}
+                title={title}
+                alt={title}
+                debounce={0}
+              />
             ))}
 
             <div className="flex flex-col mt-5 md:mt-0 md:ml-5">
