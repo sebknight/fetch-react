@@ -5,9 +5,13 @@ import {
   selectTitle,
   selectIsWikiLoading,
   selectPageId,
-  selectIsWikiError
+  selectIsWikiError,
 } from "../../redux/slices/wikiSlice";
-import { selectDogUrl, selectIsDogLoading, selectIsDogError } from "../../redux/slices/dogSlice";
+import {
+  selectDogUrl,
+  selectIsDogLoading,
+  selectIsDogError,
+} from "../../redux/slices/dogSlice";
 import renderIf from "render-if";
 import Img from "react-cool-img";
 import LoadingIndicator from "../LoadingIndicator";
@@ -21,7 +25,7 @@ const Content = () => {
   const isWikiLoading = useSelector(selectIsWikiLoading);
   const isDogError = useSelector(selectIsDogError);
   const isWikiError = useSelector(selectIsWikiError);
-  
+
   return (
     <section className="mt-12 flex justify-center items-center">
       {renderIf(isDogLoading || isWikiLoading)(() => (
@@ -32,9 +36,8 @@ const Content = () => {
           data-testid="Content-card"
           className="max-w-full md:max-w-5xl bg-white border-2 border-gray-300 p-5 rounded-md tracking-wide shadow-lg"
         >
-          <div 
-          className="xs:flex-col md:flex max-h-full">
-            {renderIf(!isDogError && !isWikiError || imgUrl !== "/")(() => (
+          <div className="xs:flex-col md:flex max-h-full">
+            {renderIf((!isDogError && !isWikiError) || imgUrl !== "/")(() => (
               <>
                 <Img
                   data-testid="Content-image"
