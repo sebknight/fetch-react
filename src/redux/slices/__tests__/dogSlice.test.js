@@ -53,7 +53,7 @@ describe("dog reducer", () => {
         }
       )
     ).toEqual({
-      url: "no dog found",
+      url: "/",
       loading: false,
       error: true,
     });

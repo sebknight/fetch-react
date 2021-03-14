@@ -9,6 +9,7 @@ export const dogEdgeCases = [
   "plott",
   "pyrenees",
   "txt",
+  "data:image/gif;",
 ];
 
 export const wikiEdgeCases = [

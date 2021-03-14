@@ -16,7 +16,7 @@ export const dogSlice = createSlice({
       state.loading = false;
     },
     fetchDogFailure: (state) => {
-      state.url = "no dog found";
+      state.url = "/";
       state.loading = false;
       state.error = true;
     },
