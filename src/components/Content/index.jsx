@@ -5,8 +5,13 @@ import {
   selectTitle,
   selectIsWikiLoading,
   selectPageId,
+  selectIsWikiError,
 } from "../../redux/slices/wikiSlice";
-import { selectDogUrl, selectIsDogLoading } from "../../redux/slices/dogSlice";
+import {
+  selectDogUrl,
+  selectIsDogLoading,
+  selectIsDogError,
+} from "../../redux/slices/dogSlice";
 import renderIf from "render-if";
 import Img from "react-cool-img";
 import LoadingIndicator from "../LoadingIndicator";
@@ -18,6 +23,8 @@ const Content = () => {
   const pageId = useSelector(selectPageId);
   const isDogLoading = useSelector(selectIsDogLoading);
   const isWikiLoading = useSelector(selectIsWikiLoading);
+  const isDogError = useSelector(selectIsDogError);
+  const isWikiError = useSelector(selectIsWikiError);
 
   return (
     <section className="mt-12 flex justify-center items-center">
@@ -30,18 +37,20 @@ const Content = () => {
           className="max-w-full md:max-w-5xl bg-white border-2 border-gray-300 p-5 rounded-md tracking-wide shadow-lg"
         >
           <div className="xs:flex-col md:flex max-h-full">
-            {renderIf(imgUrl !== "/" && imgUrl !== "no dogs found" && snippet !== "No dogs found. Try again!")(() => (
+            {renderIf((!isDogError && !isWikiError) || imgUrl !== "/")(() => (
               <Img
                 data-testid="Content-image"
-                className="flex-col max-w-full max-h-80 md:max-w-3xl rounded-md border-2 border-gray-300"
+                className="max-w-full max-h-80 md:max-w-4xl rounded-md self-center"
+                style={{ backgroundColor: "lightgrey", width: 400 }}
                 src={imgUrl}
                 title={title}
                 alt={title}
+                debounce={0}
               />
             ))}
 
             <div className="flex flex-col mt-5 md:mt-0 md:ml-5">
-              {renderIf(imgUrl !== "no dog found")(() => (
+              {renderIf(imgUrl !== "/")(() => (
                 <h2
                   data-testid="Content-title"
                   className="text-xl font-bold text-green-600"
@@ -50,11 +59,11 @@ const Content = () => {
                 </h2>
               ))}
 
-              {renderIf(imgUrl === "no dog found")(() => (
+              {renderIf(isDogError)(() => (
                 <p>No dogs found. Try again!</p>
               ))}
 
-              {renderIf(imgUrl !== "no dog found")(() => (
+              {renderIf(imgUrl !== "/")(() => (
                 <p data-testid="Content-snippet">{snippet}</p>
               ))}
 
