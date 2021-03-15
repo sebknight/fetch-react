@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import {
   selectSnippet,
@@ -26,6 +26,10 @@ const Content = () => {
   const isDogError = useSelector(selectIsDogError);
   const isWikiError = useSelector(selectIsWikiError);
 
+  // Used to hide placeholder
+  const imgRef = useRef();
+  const onLoad = () => imgRef.current.style = "";
+
   return (
     <section className="mt-12 flex justify-center items-center">
       {renderIf(isDogLoading || isWikiLoading)(() => (
@@ -40,16 +44,18 @@ const Content = () => {
             {renderIf((!isDogError && !isWikiError) || imgUrl !== "/")(() => (
               <Img
                 data-testid="Content-image"
-                className="max-w-full max-h-80 md:max-w-4xl rounded-md self-center"
-                style={{ backgroundColor: "lightgrey", width: 400 }}
+                className="max-w-full max-h-80 md:max-w-4xl rounded-md object-contain"
+                style={{ backgroundColor: "lightgrey", width: 350 }}
                 src={imgUrl}
                 title={title}
                 alt={title}
                 debounce={0}
+                onLoad={onLoad}
+                ref={imgRef}
               />
             ))}
 
-            <div className="flex flex-col mt-5 md:mt-0 md:ml-5">
+            <div className="flex flex-col flex-shrink mt-5 md:mt-0 md:ml-5">
               {renderIf(imgUrl !== "/")(() => (
                 <h2
                   data-testid="Content-title"
