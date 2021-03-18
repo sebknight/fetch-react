@@ -28,7 +28,7 @@ const Content = () => {
 
   // Used to hide placeholder
   const imgRef = useRef();
-  const onLoad = () => imgRef.current.style = "";
+  const onLoad = () => (imgRef.current.style = "");
 
   return (
     <section className="mt-12 flex justify-center items-center">

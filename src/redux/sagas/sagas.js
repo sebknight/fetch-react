@@ -14,7 +14,7 @@ export function* rootSaga() {
   yield takeLatest("wiki/fetchWikiRequest", fetchWikiSaga);
 }
 
-function* fetchDogSaga() {
+export function* fetchDogSaga() {
   yield put({ type: "dog/clearData" });
   yield put({ type: "wiki/clearData" });
   try {
@@ -36,7 +36,7 @@ function* fetchDogSaga() {
   }
 }
 
-function* fetchWikiSaga() {
+export function* fetchWikiSaga() {
   try {
     const state = yield select();
     const query = yield getBreed(selectDogUrl(state));
