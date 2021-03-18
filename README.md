@@ -11,3 +11,9 @@ This project uses the Fetch API and Redux Sagas to asynchronously request data f
 Error handling captures instances where the Dog or Wikipedia API calls fail or where there are no results, 
 as well as reducing garbage output by providing sensible defaults.
 This was also a good opportunity to try out Tailwind.
+
+## Running locally
+1. Run `npm install`
+2. Run `npm start`
+3. To run tests, run `npm run test`
+4. To format, run `npm run format`
